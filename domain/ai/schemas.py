@@ -1,7 +1,7 @@
 from typing import Any
 
 from pydantic import BaseModel, Field
-from ...domain.ai.enums import CategoryEnum, ScopeEnum, IntentEnum, TableEnum
+from domain.ai.enums import CategoryEnum, ScopeEnum, IntentEnum, TableEnum
 
 
 class ClassificationOutput(BaseModel):

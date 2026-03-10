@@ -1,7 +1,7 @@
 from sqlalchemy import or_
 
-from ....infrastructure.db.models import FaqItem
-from ....infrastructure.repositories.ai_fetch_data.base_ai_repository import BaseAIRepository as BaseRepo
+from infrastructure.db.models import FaqItem
+from infrastructure.repositories.ai_fetch_data.base_ai_repository import BaseAIRepository as BaseRepo
 
 
 class SqlAlchemyFaqRepo(BaseRepo):

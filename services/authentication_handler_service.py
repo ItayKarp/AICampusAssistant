@@ -1,5 +1,5 @@
-from ..infrastructure.repositories.authentication_repositories import validate_neon_token
-from ..infrastructure.repositories.authentication_repositories.temporary_user_id_repository import TemporaryUserIdRepository
+from infrastructure.repositories.authentication_repositories import validate_neon_token
+from infrastructure.repositories.authentication_repositories.temporary_user_id_repository import TemporaryUserIdRepository
 
 
 class AuthenticationHandlerService:

@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Request, Header, HTTPException
 from pygments.lexers import q
 
-from ...services.authentication_handler_service import AuthenticationHandlerService
-from ...infrastructure.repositories.authentication_repositories import Login, Register, RequestResetPasswordRepository, ResetPasswordRepository
-from ...schemas.endpoint_validation.authentication_validation import LoginRequest, SignupRequest, ForgotPassword
-from ...api.dependencies import get_user_id_and_email
-from ...infrastructure.repositories.user_data_repositories.new_user_create_repository import CreateNewUser
+from services.authentication_handler_service import AuthenticationHandlerService
+from infrastructure.repositories.authentication_repositories import Login, Register, RequestResetPasswordRepository, ResetPasswordRepository
+from schemas.endpoint_validation.authentication_validation import LoginRequest, SignupRequest, ForgotPassword
+from api.dependencies import get_user_id_and_email
+from infrastructure.repositories.user_data_repositories.new_user_create_repository import CreateNewUser
 
 
 authentication_router = APIRouter(prefix="/auth", tags=["authentication"])

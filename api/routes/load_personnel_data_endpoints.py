@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Header
 
-from ...infrastructure.repositories.user_data_repositories import LoadUserDataRepository
-from ...api.dependencies import get_user_id_and_email
-from ...infrastructure.repositories.user_data_repositories.new_user_create_repository import CreateNewUser
-from ...schemas.endpoint_validation.user_validation import Student
-from ...services.load_personnel_handler_service import LoadPersonnelHandlerService
-from ...services.user_handler_service import UserHandlerService
+from infrastructure.repositories.user_data_repositories import LoadUserDataRepository
+from api.dependencies import get_user_id_and_email
+from infrastructure.repositories.user_data_repositories.new_user_create_repository import CreateNewUser
+from schemas.endpoint_validation.user_validation import Student
+from services.load_personnel_handler_service import LoadPersonnelHandlerService
+from services.user_handler_service import UserHandlerService
 
 load_router = APIRouter(prefix="/load-personnel-data", tags=["load-personnel-data"])
 

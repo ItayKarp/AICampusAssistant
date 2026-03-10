@@ -4,7 +4,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from ...domain.ai.schemas import ClassificationOutput
+from domain.ai.schemas import ClassificationOutput
 from google import genai
 from dotenv import load_dotenv
 from google.genai.errors import ClientError

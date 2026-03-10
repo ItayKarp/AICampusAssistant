@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from ....infrastructure.db.models import User
-from ....infrastructure.repositories.user_data_repositories.base_user_repository import BaseUserRepository
+from infrastructure.db.models import User
+from infrastructure.repositories.user_data_repositories.base_user_repository import BaseUserRepository
 
 
 class LoadUserDataRepository(BaseUserRepository):

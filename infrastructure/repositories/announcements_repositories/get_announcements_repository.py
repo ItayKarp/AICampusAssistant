@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 
-from ....infrastructure.db.models import Announcement
-from ....infrastructure.repositories.announcements_repositories.base_announcement_repository import BaseAnnouncementRepository
+from infrastructure.db.models import Announcement
+from infrastructure.repositories.announcements_repositories.base_announcement_repository import BaseAnnouncementRepository
 
 class GetAnnouncements(BaseAnnouncementRepository):
     def get_announcements(self, user_id: int) -> list[dict]:

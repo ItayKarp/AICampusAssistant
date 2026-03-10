@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from ....infrastructure.db.models import Course, Exam, Student, StudentClass
-from ....infrastructure.repositories.ai_fetch_data.base_ai_repository import BaseAIRepository
-from ....infrastructure.repositories.ai_fetch_data.helpers import (
+from infrastructure.db.models import Course, Exam, Student, StudentClass
+from infrastructure.repositories.ai_fetch_data.base_ai_repository import BaseAIRepository
+from infrastructure.repositories.ai_fetch_data.helpers import (
     RepositoryClassificationHelper as ClassificationHelper,
     RepositoryResponseBuilder as ResponseBuilder,
 )
