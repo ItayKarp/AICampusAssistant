@@ -1,0 +1,110 @@
+{
+  "passed": 7,
+  "failed": 6,
+  "results": [
+    {
+      "id": "T01",
+      "name": "Course lookup by course_name",
+      "status": "FAIL",
+      "observed": "{\"count\": 2, \"results\": [{\"class_name\": \"Database Systems\", \"class_code\": \"20451\"}, {\"class_name\": \"Calculus I\", \"class_code\": \"30001\"}], \"message\": null}",
+      "expected": "Exactly 1 matching course",
+      "risk": "Low"
+    },
+    {
+      "id": "T02",
+      "name": "Course lookup by class_code filter from classifier contract",
+      "status": "PASS",
+      "observed": "{\"count\": 1, \"results\": [{\"class_name\": \"Database Systems\", \"class_code\": \"20451\"}], \"message\": null}",
+      "expected": "Exactly 1 matching course",
+      "risk": "High"
+    },
+    {
+      "id": "T03",
+      "name": "Exam lookup by room",
+      "status": "PASS",
+      "observed": "{\"count\": 1, \"results\": [{\"exam_date\": \"2026-06-01\", \"room\": \"B201\"}], \"message\": null}",
+      "expected": "Exactly 1 matching exam",
+      "risk": "Low"
+    },
+    {
+      "id": "T04",
+      "name": "Exam lookup by course_name from classifier contract",
+      "status": "FAIL",
+      "observed": "{\"count\": 2, \"results\": [{\"exam_date\": \"2026-06-01\", \"room\": \"B201\"}, {\"exam_date\": \"2026-06-02\", \"room\": \"A101\"}], \"message\": null}",
+      "expected": "Exactly 1 matching exam",
+      "risk": "Critical"
+    },
+    {
+      "id": "T05",
+      "name": "Office hours lookup by internal day key",
+      "status": "FAIL",
+      "observed": "{\"count\": 2, \"results\": [{\"day_of_week\": \"Sunday\", \"open_time\": \"08:00:00\", \"close_time\": \"12:00:00\", \"office_name\": \"Finance Office\"}, {\"day_of_week\": \"Monday\", \"open_time\": \"09:00:00\", \"close_time\": \"13:00:00\", \"office_name\": \"Finance Office\"}], \"message\": null}",
+      "expected": "Exactly 1 matching office-hours row",
+      "risk": "Low"
+    },
+    {
+      "id": "T06",
+      "name": "Office hours lookup by day_of_week from classifier contract",
+      "status": "PASS",
+      "observed": "{\"count\": 1, \"results\": [{\"day_of_week\": \"Sunday\", \"open_time\": \"08:00:00\", \"close_time\": \"12:00:00\", \"office_name\": \"Finance Office\"}], \"message\": null}",
+      "expected": "Exactly 1 matching office-hours row",
+      "risk": "High"
+    },
+    {
+      "id": "T07",
+      "name": "Invalid office day rejected",
+      "status": "FAIL",
+      "observed": "{\"count\": 2, \"results\": [{\"day_of_week\": \"Sunday\"}, {\"day_of_week\": \"Monday\"}], \"message\": null}",
+      "expected": "Validation error message",
+      "risk": "Low"
+    },
+    {
+      "id": "T08",
+      "name": "Unsupported category returned by classifier",
+      "status": "FAIL",
+      "observed": "{\"classification\": {\"category\": \"faq\", \"table\": \"faq_items\", \"relevant_columns\": [\"question\", \"answer\"], \"related_tables\": [], \"filters\": {}, \"confidence\": 0.9}, \"data\": {}, \"answer\": \"ok\"}",
+      "expected": "Supported handler or explicit unsupported-category error",
+      "risk": "High"
+    },
+    {
+      "id": "T09",
+      "name": "Malformed classifier JSON handled",
+      "status": "PASS",
+      "observed": "{\"classification\": null, \"data\": null, \"answer\": \"I couldn\\u2019t understand the request classification.\"}",
+      "expected": "Graceful classification failure",
+      "risk": "Medium"
+    },
+    {
+      "id": "T10",
+      "name": "Classifier exception sanitization",
+      "status": "PASS",
+      "observed": "{\"classification\": null, \"data\": null, \"answer\": \"An error occurred\"}",
+      "expected": "Sanitized public error message",
+      "risk": "High"
+    },
+    {
+      "id": "T11",
+      "name": "Responder exception HTTP behavior",
+      "status": "PASS",
+      "observed": "200 {\"classification\":{\"category\":\"courses\",\"table\":\"courses\",\"relevant_columns\":[\"class_name\"],\"related_tables\":[],\"filters\":{},\"confidence\":0.9},\"data\":{\"count\":2,\"results\":[{\"class_name\":\"Database Systems\"},{\"class_name\":\"Calculus I\"}],\"message\":null},\"answer\":\"An error occurred\"}",
+      "expected": "Non-500 controlled error response",
+      "risk": "Critical"
+    },
+    {
+      "id": "T12",
+      "name": "Identity-aware \"my\" query isolation",
+      "status": "FAIL",
+      "observed": "{\"classification\": {\"category\": \"exams\", \"table\": \"exams\", \"relevant_columns\": [\"exam_date\", \"room\"], \"related_tables\": [\"courses\"], \"filters\": {}, \"confidence\": 0.9}, \"data\": {\"count\": 2, \"results\": [{\"exam_date\": \"2026-06-01\", \"room\": \"B201\"}, {\"exam_date\": \"2026-06-02\", \"room\": \"A101\"}], \"message\": null}, \"answer\": \"ok\"}",
+      "expected": "User-scoped result, not all exams",
+      "risk": "Critical"
+    },
+    {
+      "id": "T13",
+      "name": "Classifier instruction file formatting",
+      "status": "PASS",
+      "observed": "clean plain text",
+      "expected": "Clean plain-text instruction content only",
+      "risk": "Medium"
+    }
+  ]
+}
