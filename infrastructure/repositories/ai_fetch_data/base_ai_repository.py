@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from contextlib import contextmanager
 from typing import Any
 
-from ....infrastructure.db.database import Session
+from infrastructure.db.database import Session
 
 
 class BaseAIRepository(ABC):

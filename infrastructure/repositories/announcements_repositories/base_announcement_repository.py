@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 
-from ....infrastructure.db.models import User
+from infrastructure.db.models import User
 
 
 class BaseAnnouncementRepository:

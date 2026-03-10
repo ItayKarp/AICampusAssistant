@@ -1,6 +1,6 @@
 from typing import Any
 
-from ...domain.ai.schemas import ClassificationOutput, ValidatedClassification
+from domain.ai.schemas import ClassificationOutput, ValidatedClassification
 
 
 class AIQueryService:

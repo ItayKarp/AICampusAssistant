@@ -1,8 +1,8 @@
 from contextlib import contextmanager
 from datetime import datetime
 
-from ....infrastructure.db.database import Session
-from ....infrastructure.db.models import FaqItem, User
+from infrastructure.db.database import Session
+from infrastructure.db.models import FaqItem, User
 
 class FaqItemsRepository:
     def __init__(self, session_factory=Session):

@@ -1,8 +1,8 @@
 from contextlib import contextmanager
 from datetime import datetime
 
-from ....infrastructure.db.models import User
-from ....infrastructure.db.database import Session
+from infrastructure.db.models import User
+from infrastructure.db.database import Session
 
 
 class CreateNewUser:

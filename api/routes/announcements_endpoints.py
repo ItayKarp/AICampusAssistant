@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Header
 
-from ...infrastructure.repositories.announcements_repositories.delete_announcements_repository import \
+from infrastructure.repositories.announcements_repositories.delete_announcements_repository import \
     DeleteAnnouncementsRepository
-from ...infrastructure.repositories.announcements_repositories.get_announcements_repository import GetAnnouncements
-from ...infrastructure.repositories.announcements_repositories.update_announcements_repository import \
+from infrastructure.repositories.announcements_repositories.get_announcements_repository import GetAnnouncements
+from infrastructure.repositories.announcements_repositories.update_announcements_repository import \
     UpdateAnnouncementsRepository
-from ...schemas.endpoint_validation.announcements_validation import CreateAnnouncementSchema
-from ...services.announcements_handler_service import AnnouncementsHandlerService
-from ...infrastructure.repositories.announcements_repositories.create_announcement_repository import CreateAnnouncementRepository
-from ...api.dependencies import get_user_id_and_email
+from schemas.endpoint_validation.announcements_validation import CreateAnnouncementSchema
+from services.announcements_handler_service import AnnouncementsHandlerService
+from infrastructure.repositories.announcements_repositories.create_announcement_repository import CreateAnnouncementRepository
+from api.dependencies import get_user_id_and_email
 
 announcements_router = APIRouter(tags=["announcements"])
 

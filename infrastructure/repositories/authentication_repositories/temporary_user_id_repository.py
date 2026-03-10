@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 
-from ....infrastructure.db.database import Session
-from ....infrastructure.db.models import User
+from infrastructure.db.database import Session
+from infrastructure.db.models import User
 
 
 class TemporaryUserIdRepository:

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Header
 
-from ...infrastructure.repositories.faq_items_repositories import FaqItemsRepository
-from ...api.dependencies import get_user_id_and_email
-from ...services.faq_items_handler_service import FaqItemsHandleService
-from ...schemas.endpoint_validation.faq_items_validation import FaqItem
+from infrastructure.repositories.faq_items_repositories import FaqItemsRepository
+from api.dependencies import get_user_id_and_email
+from services.faq_items_handler_service import FaqItemsHandleService
+from schemas.endpoint_validation.faq_items_validation import FaqItem
 
 faq_router = APIRouter(tags=["faq-items"])
 

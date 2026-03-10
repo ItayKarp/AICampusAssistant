@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from ....infrastructure.db.database import Session
+from infrastructure.db.database import Session
 
 class BaseUserRepository:
     def __init__(self, session_factory=Session):

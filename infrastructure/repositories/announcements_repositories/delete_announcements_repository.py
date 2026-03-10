@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from ....infrastructure.db.models import Announcement, AuditLog
-from ....infrastructure.repositories.announcements_repositories.base_announcement_repository import BaseAnnouncementRepository
+from infrastructure.db.models import Announcement, AuditLog
+from infrastructure.repositories.announcements_repositories.base_announcement_repository import BaseAnnouncementRepository
 
 class DeleteAnnouncementsRepository(BaseAnnouncementRepository):
     def delete(self,announcement_id, user_id, details):

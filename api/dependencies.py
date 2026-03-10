@@ -1,9 +1,9 @@
 from contextlib import contextmanager
 
 from fastapi import HTTPException
-from ..infrastructure.db.database import Session
-from ..infrastructure.db.models import User
-from ..services.authentication_handler_service import AuthenticationHandlerService
+from infrastructure.db.database import Session
+from infrastructure.db.models import User
+from services.authentication_handler_service import AuthenticationHandlerService
 
 @contextmanager
 def context_manager(session_factory = Session):

@@ -1,7 +1,7 @@
 from typing import Any
 
-from ...domain.ai.schemas import ClassificationOutput, ValidatedClassification
-from ...domain.ai.rules import (
+from domain.ai.schemas import ClassificationOutput, ValidatedClassification
+from domain.ai.rules import (
     CATEGORY_TABLE_MAP,
     CATEGORY_ALLOWED_COLUMNS,
     CATEGORY_ALLOWED_RELATED_COLUMNS,
