@@ -1,3 +1,0 @@
-from .course_repository import SqlAlchemyCoursesRepo
-from .exam_repository import SqlAlchemyExamRepo
-from .office_repository import SqlAlchemyOfficeRepo
