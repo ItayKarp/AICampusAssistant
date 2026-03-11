@@ -51,7 +51,8 @@ class GetAnnouncements(BaseAnnouncementRepository):
     def management_announcements(self, user_id: int) -> list[dict]:
         with self.context_manager() as session:
             user = self.get_user(user_id, session)
-
+            if not user:
+                raise HTTPException(status_code=404, detail="User not found")
             base_query = session.query(Announcement).filter(Announcement.is_active == True)
 
             if user.role == "admin":
