@@ -1,22 +1,18 @@
 from datetime import datetime
 
-from infrastructure.db.models import User
+from infrastructure.db.models import User, Student
 from infrastructure.repositories.user_data_repositories.base_user_repository import BaseUserRepository
 
 
 class LoadUserDataRepository(BaseUserRepository):
-    def get_user_data(self, email):
+    def get_user_data(self, user_id):
         with self.context_manager() as session:
-            user = session.query(User).filter(User.email == email).first()
-            if not user:
-                raise ValueError(
-                    "User not found"
-                )
-            user.last_login = datetime.now()
-            session.flush(user)
+            student = session.query(Student).filter(Student.user_id == user_id).first()
+            if not student:
+                raise ValueError("Student not found")
             return {
-                "user_id": user.id,
-                "user_name": user.name,
-                "user_email": user.email,
-                "user_role": user.role,
+                "first_name": student.first_name,
+                "last_name": student.last_name,
+                "major": student.major,
+                "year": student.year,
             }

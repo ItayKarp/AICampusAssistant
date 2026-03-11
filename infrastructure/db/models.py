@@ -10,7 +10,7 @@ from sqlalchemy import (
     Time,
     DateTime,
     ForeignKey,
-    Numeric,
+    Numeric, Identity,
 )
 from sqlalchemy.orm import relationship
 
@@ -26,12 +26,11 @@ class User(Base):
     id = Column(BigInteger, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
     email = Column(String(255), nullable=False, unique=True, index=True)
-    password_hash = Column(Text, nullable=False)
     role = Column(String(50), nullable=False)  # student / management / admin
     is_active = Column(Boolean, nullable=False, default=True)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
     last_login_at = Column(DateTime, nullable=True)
-    neon_user_id = Column(Text, nullable=True)
+    supa_base_user_id = Column(Text, nullable=True)
 
     student_profile = relationship("Student", back_populates="user", uselist=False)
     announcements_created = relationship("Announcement", back_populates="creator")
@@ -47,11 +46,11 @@ class User(Base):
 class Student(Base):
     __tablename__ = "students"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer,Identity(always=True), primary_key=True, index=True)
     first_name = Column(Text, nullable=False)
     last_name = Column(Text, nullable=False)
     email = Column(Text, nullable=False, unique=True, index=True)
-    student_number = Column(Integer, nullable=False, unique=True, index=True)
+    student_number = Column(Integer,Identity(always=True), nullable=False, unique=True, index=True)
     major = Column(Text, nullable=False)
     year = Column(Integer, nullable=False)
     created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
