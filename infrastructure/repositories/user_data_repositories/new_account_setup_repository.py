@@ -1,25 +1,24 @@
 from datetime import datetime
 from fastapi import HTTPException
 
-from infrastructure.db import User, Student
+from infrastructure.db.models import User, Student
 from infrastructure.repositories.user_data_repositories.base_user_repository import BaseUserRepository
 
 
 class NewAccountSetupRepository(BaseUserRepository):
-    def setup(self,email, body):
+    def setup(self,user_id, body):
         with self.context_manager() as session:
-            user = session.query(User).filter(User.email == email).first()
-            if user:
-                raise HTTPException(status_code=409, detail="User with this email already exists")
+            user = session.query(User).filter(User.id == user_id).first()
+            if not user:
+                raise HTTPException(status_code=409, detail="User does not exist.")
             student = Student(
                 first_name=body.first_name,
                 last_name=body.last_name,
-                email=email,
+                email=user.email,
                 major=body.major,
                 year=body.year,
                 created_at=datetime.now(),
-
+                user_id=user.id
             )
             session.add(student)
-            session.flush(student)
-            return {"message": "Account created successfully", "account_id": user.id}
+            return {"message": "Account created successfully"}

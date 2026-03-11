@@ -33,7 +33,7 @@ class SqlAlchemyExamsRepo(BaseAIRepository):
             exams = query.all()
 
             if not exams:
-                return ResponseBuilder.empty("No exams found.")
+                return ResponseBuilder.empty(category="exams",table="exams", message="No exams found.")
 
             data = [self._serialize_exam(exam, relevant_columns) for exam in exams]
 

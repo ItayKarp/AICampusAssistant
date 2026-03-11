@@ -19,7 +19,7 @@ class AIPromptRequest(BaseModel):
 
 @users_router.post("/ai-prompt")
 async def ask(body: AIPromptRequest, authorization: str = Header(...)):
-    user_id, email = get_user_id_and_email(authorization)
+    user_id, email, supabase_user_id = get_user_id_and_email(authorization)
     repository_selector = AIRepositorySelector(
         repositories_map={
             CategoryEnum.EXAMS: SqlAlchemyExamsRepo(),
