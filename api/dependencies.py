@@ -15,6 +15,8 @@ if not SUPABASE_URL:
 SUPABASE_JWKS_URL = f"{SUPABASE_URL.rstrip('/')}/auth/v1/.well-known/jwks.json"
 SUPABASE_ISSUER = f"{SUPABASE_URL.rstrip('/')}/auth/v1"
 
+
+
 @contextmanager
 def context_manager(session_factory=Session):
     session = session_factory()
@@ -47,7 +49,7 @@ def verify_supabase_jwt(token: str) -> dict:
         payload = jwt.decode(
             token,
             signing_key.key,
-            algorithms=["ES256", "RS256"],
+            algorithms=["RS256", "ES256"],
             issuer=SUPABASE_ISSUER,
             options={
                 "require": ["exp", "sub", "iss"],
@@ -63,8 +65,11 @@ def verify_supabase_jwt(token: str) -> dict:
 
 
 def get_user_id_and_email(authorization: str | None = Header(default=None)):
+    print(f"URL:{SUPABASE_URL}, JWKS:{SUPABASE_JWKS_URL}, ISSUER:{SUPABASE_ISSUER}")
     token = extract_bearer_token(authorization)
+    print(token)
     payload = verify_supabase_jwt(token)
+    print(payload)
 
     user_metadata = payload.get("user_metadata") or {}
     supabase_user_id = payload.get("sub")

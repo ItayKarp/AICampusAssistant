@@ -12,6 +12,9 @@ class AnnouncementsHandlerService:
     def handle_get_announcements(self, user_id):
         return self.announcements_repository.get_announcements(user_id)
 
+    def handle_management_announcements(self, user_id):
+        return self.announcements_repository.get_management_announcements(user_id)
+
     def handle_update_announcements(self,announcement_id, payload,details, user_id):
         update_announcement = self.announcements_repository.update(announcement_id, payload,details, user_id)
         self.notification_repository.update_notification(payload,announcement_id)

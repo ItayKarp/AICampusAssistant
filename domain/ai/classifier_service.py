@@ -5,21 +5,20 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from domain.ai.schemas import ClassificationOutput
-from google import genai
 from dotenv import load_dotenv
-from google.genai.errors import ClientError
-from google.genai.types import GenerateContentConfig
+from openai import OpenAI
+
 
 load_dotenv()
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-client = genai.Client(api_key=GEMINI_API_KEY)
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 SYSTEM_INSTRUCTIONS_PATH = Path(__file__).resolve().parent / "classifier_system_instructions.txt"
 SYSTEM_INSTRUCTION = SYSTEM_INSTRUCTIONS_PATH.read_text(encoding="utf-8")
 
 class AIClassifierService:
-    def __init__(self, model_name = "gemini-2.5-flash-lite",ai_client = client, system_instruction = SYSTEM_INSTRUCTION):
+    def __init__(self, model_name = "gpt-4o-mini",ai_client = client, system_instruction = SYSTEM_INSTRUCTION):
         self.client = ai_client
         self.model_name = model_name
         self.system_instruction = system_instruction
@@ -31,18 +30,14 @@ class AIClassifierService:
 
     def _generate_classification(self, question) -> str:
         try:
-            response = self.client.models.generate_content(
+            response = self.client.responses.create(
                 model=self.model_name,
-                contents=question,
-                config=GenerateContentConfig(
-                    system_instruction=self.system_instruction
+                input=question,
+                instructions=self.system_instruction,
+                timeout=8.0
                 )
-            )
-            print(response.text)
-            return response.text
-        except ClientError as e:
-            print(f"Error: {e}")
-            raise RuntimeError("Failed to generate response. Please try again later.")
+
+            return response.output_text
         except Exception as e:
             print(f"Unexpected error: {e}")
             raise

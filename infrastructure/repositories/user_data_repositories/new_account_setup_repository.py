@@ -11,6 +11,9 @@ class NewAccountSetupRepository(BaseUserRepository):
             user = session.query(User).filter(User.id == user_id).first()
             if not user:
                 raise HTTPException(status_code=409, detail="User does not exist.")
+            student = session.query(Student).filter(Student.user_id == user_id).first()
+            if student:
+                raise HTTPException(status_code=409, detail="Student already exists.")
             student = Student(
                 first_name=body.first_name,
                 last_name=body.last_name,

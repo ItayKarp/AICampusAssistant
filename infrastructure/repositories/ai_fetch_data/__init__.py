@@ -1,2 +1,2 @@
-from .faq_repository import SqlAlchemyFaqRepo
+from .announcements_repository import SqlAlchemyAnnouncementsRepo
 from .exams_repository import SqlAlchemyExamsRepo
