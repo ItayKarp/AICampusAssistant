@@ -7,9 +7,6 @@ from infrastructure.db.models import Announcement, AuditLog
 class CreateAnnouncementRepository(BaseAnnouncementRepository):
     def create(self, payload, user_id):
         with self.context_manager() as session:
-            user = self.get_user(user_id, session)
-            if user.role != "admin" or user.role != "management":
-                raise ValueError("Unauthorized access")
             announcement = Announcement(**payload)
             session.add(announcement)
             session.flush(announcement)
