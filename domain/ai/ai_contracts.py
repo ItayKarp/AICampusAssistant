@@ -1,0 +1,66 @@
+from __future__ import annotations
+
+CATEGORY_SCHEMA_MAP = {
+    "courses": {
+        "table": "courses",
+        "default_columns": ["class_code", "class_name", "lecturer", "semester"],
+        "allowed_columns": [
+            "id",
+            "class_code",
+            "class_name",
+            "lecturer",
+            "semester",
+            "credits",
+            "description",
+        ],
+        "allowed_filters": ["class_code", "class_name", "lecturer", "semester"],
+    },
+    "exams": {
+        "table": "exams",
+        "default_columns": ["class_name", "class_code", "exam_date", "exam_time", "room", "type"],
+        "allowed_columns": [
+            "id",
+            "class_name",
+            "class_code",
+            "lecturer",
+            "semester",
+            "exam_date",
+            "exam_time",
+            "room",
+            "type",
+        ],
+        "allowed_filters": ["class_name", "class_code", "lecturer", "semester", "room", "type", "date_from", "date_to"],
+    },
+    "office_opening_hours": {
+        "table": "office_opening_hours",
+        "default_columns": [
+            "office_name",
+            "building",
+            "room_number",
+            "day_of_week",
+            "open_time",
+            "close_time",
+            "phone",
+            "email",
+        ],
+        "allowed_columns": [
+            "id",
+            "office_id",
+            "office_name",
+            "building",
+            "room_number",
+            "day_of_week",
+            "open_time",
+            "close_time",
+            "phone",
+            "email",
+        ],
+        "allowed_filters": ["office_name", "day_of_week", "building", "room_number"],
+    },
+    "faq": {
+        "table": "faq_items",
+        "default_columns": ["id", "title", "question", "answer", "category"],
+        "allowed_columns": ["id", "title", "question", "answer", "category"],
+        "allowed_filters": ["category", "question", "search_text"],
+    },
+}

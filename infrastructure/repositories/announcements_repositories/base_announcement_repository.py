@@ -1,10 +1,11 @@
 from contextlib import contextmanager
 
+from infrastructure.db.database import Session
 from infrastructure.db.models import User
 
 
 class BaseAnnouncementRepository:
-    def __init__(self, session_factory=None):
+    def __init__(self, session_factory=Session):
         self.session_factory = session_factory
 
     @contextmanager

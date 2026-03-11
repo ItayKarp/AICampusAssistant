@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from api import users_router,announcements_router,load_router,faq_router
 from fastapi.middleware.cors import CORSMiddleware
+
+from api.routes.management import management_router
+
 app = FastAPI()
 
 origins = [
@@ -23,3 +26,5 @@ app.include_router(users_router)
 app.include_router(announcements_router)
 app.include_router(load_router)
 app.include_router(faq_router)
+
+app.include_router(management_router)

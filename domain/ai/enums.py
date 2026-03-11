@@ -4,7 +4,7 @@ from enum import Enum
 class CategoryEnum(str, Enum):
     EXAMS = "exams"
     COURSES = "courses"
-    FAQ = "faq"
+    ANNOUNCEMENTS = "announcements"
     OFFICE_OPENING_HOURS = "office_opening_hours"
 
 
