@@ -10,4 +10,4 @@ management_router = APIRouter(prefix="/management", tags=["management"])
 async def announcements(authorization: str = Header(...)):
     user_id, email, supabase_user_id = get_user_id_and_email(authorization)
     use_case =  AnnouncementsHandlerService(GetAnnouncements())
-    return use_case.handle_get_announcements(user_id)
+    return use_case.handle_management_announcements(user_id)
