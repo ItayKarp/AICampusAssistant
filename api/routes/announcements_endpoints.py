@@ -8,6 +8,7 @@ from infrastructure.repositories.announcements_repositories.update_announcements
 from schemas.endpoint_validation.announcements_validation import CreateAnnouncementSchema
 from services.announcements_handler_service import AnnouncementsHandlerService
 from infrastructure.repositories.announcements_repositories.create_announcement_repository import CreateAnnouncementRepository
+from infrastructure.repositories.notification_repositories.notification_repository import CreateNotificationRepository
 from api.dependencies import get_user_id_and_email
 
 announcements_router = APIRouter(tags=["announcements"])
@@ -15,7 +16,7 @@ announcements_router = APIRouter(tags=["announcements"])
 @announcements_router.post("/announcements")
 async def announcements(body: CreateAnnouncementSchema,authorization: str = Header(...)):
     user_id, email, supabase_user_id = get_user_id_and_email(authorization)
-    use_case = AnnouncementsHandlerService(CreateAnnouncementRepository())
+    use_case = AnnouncementsHandlerService(announcements_repository=CreateAnnouncementRepository(), notification_repository=CreateNotificationRepository())
     return use_case.handle_create_announcements(body, user_id)
 
 
