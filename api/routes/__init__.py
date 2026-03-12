@@ -1,4 +1,5 @@
 from .ai_endpoint import users_router
 from .faq_item_endpoints import faq_router
 from .load_personnel_data_endpoints import load_router
+from .notification_endpoints import notification_router
 from .announcements_endpoints import announcements_router
