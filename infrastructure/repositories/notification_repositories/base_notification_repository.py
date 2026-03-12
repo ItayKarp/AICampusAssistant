@@ -34,10 +34,11 @@ class BaseNotificationRepository:
     @staticmethod
     def get_notification_details(payload):
         try:
+            prompt_input = json.dumps(payload.model_dump(), ensure_ascii=False)
             response = client.responses.create(
                 model="gpt-4o-mini",
                 instructions=SYSTEM_INSTRUCTION,
-                input=payload
+                input=prompt_input
             )
         except Exception as e:
             print(f"Unexpected error: {e}")
