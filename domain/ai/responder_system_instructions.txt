@@ -2474,3 +2474,12 @@ Output:
   "confidence": 0.94
 }
 
+Example 91
+Input:
+{
+  "status": "not_answered",
+  "answer": "I do not have that knowledge in my database.",
+  "answer_type": "not_found",
+  "confidence": 0.2
+}
+
