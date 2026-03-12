@@ -16,7 +16,8 @@ class UpdateAnnouncementsRepository(BaseAnnouncementRepository):
             announcement.content = payload.content
             announcement.target_role = payload.target_role
             announcement.updated_at = datetime.now()
-            session.flush(announcement)
+            session.flush()
+
             audit = AuditLog(
                 actor_user_id=user_id,
                 action_type="UPDATE_ANNOUNCEMENT",
@@ -26,6 +27,7 @@ class UpdateAnnouncementsRepository(BaseAnnouncementRepository):
                 created_at=datetime.now()
             )
             session.add(audit)
-            session.flush(audit)
+            session.flush()
+
             return announcement
 

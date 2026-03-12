@@ -13,7 +13,6 @@ class DeleteAnnouncementsRepository(BaseAnnouncementRepository):
             if not announcement:
                 raise ValueError(f"Announcement with id {announcement_id} not found")
             session.delete(announcement)
-            session.flush(announcement)
             audit = AuditLog(
                 actor_user_id=user_id,
                 action_type="DELETE_ANNOUNCEMENT",
@@ -23,4 +22,3 @@ class DeleteAnnouncementsRepository(BaseAnnouncementRepository):
                 created_at=datetime.now()
             )
             session.add(audit)
-            session.flush(audit)

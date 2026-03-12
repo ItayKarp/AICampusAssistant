@@ -44,7 +44,7 @@ class FaqItemsRepository:
                 raise ValueError("Unauthorized access")
             faq_item = FaqItem(**faq_item)
             session.add(faq_item)
-            session.flush(faq_item)
+
 
     def update_faq_item(self, updated_faq_item, faq_item_id, email):
         with self.context_manager() as session:
@@ -59,7 +59,7 @@ class FaqItemsRepository:
             faq_item.answer = updated_faq_item.answer
             faq_item.category = updated_faq_item.category
             faq_item.updated_at = datetime.now
-            session.flush(faq_item)
+
 
     def delete_faq_item(self, faq_item_id, email):
         with self.context_manager() as session:
@@ -70,4 +70,3 @@ class FaqItemsRepository:
             if not faq_item:
                 raise ValueError(f"FaqItem with id {faq_item_id} not found")
             session.delete(faq_item)
-            session.flush(faq_item)

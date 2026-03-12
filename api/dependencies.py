@@ -91,6 +91,6 @@ def get_user_id_and_email(authorization: str | None = Header(default=None)):
                 name=name
             )
             session.add(user)
-            session.flush()
+
 
         return user.id, user.email, supabase_user_id
