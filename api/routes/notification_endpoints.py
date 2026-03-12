@@ -6,7 +6,7 @@ from services.notification_handler_service import NotificationHandlerService
 notification_router = APIRouter(prefix="/notification", tags=["notification"])
 
 
-@notification_router.get("/")
+@notification_router.get("")
 async def get_notifications(authorization: str = Header(...)):
     user_id, email, supabase_user_id = get_user_id_and_email(authorization)
     use_case = NotificationHandlerService(CreateNotificationRepository())
