@@ -22,4 +22,4 @@ class AnnouncementsHandlerService:
 
 
     def handle_delete_announcements(self,announcement_id,details, user_id):
-        return self.announcements_repository.delete(announcement_id,details, user_id)
+        return self.announcements_repository.delete(announcement_id=announcement_id,details= details,user_id= user_id)

@@ -38,4 +38,7 @@ async def announcements(announcement_id: int,details, payload: CreateAnnouncemen
 async def announcements(announcement_id: int,body:DeleteAnnouncementSchema,authorization: str = Header(...)):
     user_id, email, supabase_user_id = get_user_id_and_email(authorization)
     use_case = AnnouncementsHandlerService(DeleteAnnouncementsRepository())
-    return use_case.handle_delete_announcements(announcement_id,body.details, user_id)
+    try:
+        return use_case.handle_delete_announcements(announcement_id=announcement_id,details=body.details,user_id= user_id)
+    except ValueError:
+        return {"message": "Unauthorized access."}

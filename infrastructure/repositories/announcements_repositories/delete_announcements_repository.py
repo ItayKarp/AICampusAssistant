@@ -7,7 +7,9 @@ class DeleteAnnouncementsRepository(BaseAnnouncementRepository):
     def delete(self,announcement_id, details, user_id):
         with self.context_manager() as session:
             user = self.get_user(user_id, session)
-            if user.role != "admin" or user.role != "management":
+            if not user:
+                raise ValueError("User not found")
+            if user.role != "admin" and user.role != "management":
                 raise ValueError("Unauthorized access")
             announcement = session.get(Announcement, announcement_id)
             if not announcement:
