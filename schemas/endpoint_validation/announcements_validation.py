@@ -5,3 +5,5 @@ class CreateAnnouncementSchema(BaseModel):
     content: str
     target_role: str
 
+class DeleteAnnouncementSchema(BaseModel):
+    details: str
